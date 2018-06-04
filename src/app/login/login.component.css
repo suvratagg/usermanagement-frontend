@@ -1,0 +1,14 @@
+.card {
+    margin-left: 30%;
+    margin-top: 3.2%;
+    width: 40%;
+    height: 30%;
+}
+
+.card-body {
+    background-color: #E7D82C;
+}
+
+.registerUser{
+    height: 300px;
+}

@@ -1,0 +1,87 @@
+<div class="card" *ngIf="showLogin">
+  <img class="card-img-top" src="../../assets/image/img1.jpg" alt="Card image cap">
+  <div class="card-body">
+    <form [formGroup]="loginForm">
+      <div class="form-group" align="center">
+        <label>
+          <b>Username: - </b>
+        </label> &nbsp;
+        <input formControlName="username" />
+      </div>
+      <div class="form-group" align="center">
+        <label>
+          <b>Password: - </b>
+        </label> &nbsp;
+        <input formControlName="password" type="password" />
+      </div>
+      <div class="form-group" align="center">
+        <button type="button" class="btn btn-light btn-md" (click)="login()">
+          <b>Login</b>
+        </button>
+      </div>
+      <div class="form-group" align="center">
+        <small>
+          <b>
+            <i>Not An Existing User?</i>
+          </b>
+        </small>
+        <br>
+        <button type="button" class="btn btn-light btn-md" (click)="createUser()">
+          <b>Create New Account</b>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="showRegister">
+  <div class="registerUser">
+    <img class="card-img-top" src="../../assets/image/img1.jpg" alt="Card image cap">
+  </div>
+  <div class="card-body">
+    <form [formGroup]="registerForm">
+      <br>
+      <div class="form-group" align="center">
+        <label>
+          <b>First Name: - </b>
+        </label> &nbsp;
+        <input formControlName="firstName" />
+      </div>
+      <div class="form-group" align="center">
+        <label>
+          <b>Last Name: - </b>
+        </label> &nbsp;
+        <input formControlName="lastName" />
+      </div>
+      <div class="form-group" align="center">
+        <label>
+          <b>Username: - </b>
+        </label> &nbsp;
+        <input formControlName="username" />
+      </div>
+      <div class="form-group" align="center">
+        <label>
+          <b>Password: - </b>
+        </label> &nbsp;
+        <input formControlName="password" type="password" />
+      </div>
+      <div class="form-group" align="center">
+        <label>
+          <b>User Type: - </b>
+        </label> &nbsp;
+        <select id="typeOfUser" formControlName="userType">
+          <option value="" disabled selected="selected">Select your option</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+      </div>
+      <div align="center">
+        <button type="submit" (click)="backToLogin()" class="btn btn-light">
+          <b>Back To Login</b>
+        </button> &nbsp;
+        <button type="submit" (click)="saveUser()" class="btn btn-light">
+          <b>Register</b>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

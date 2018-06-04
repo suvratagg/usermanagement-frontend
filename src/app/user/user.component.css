@@ -1,0 +1,59 @@
+body{
+    background-color: aqua;
+}
+
+.tableHeader{
+    background-color: #303F9F;
+    color: white;
+}
+
+.tableBody{
+    background-color: #D3D3D3;
+}
+
+.inputName{
+    height: 37px;
+    width: 20%;
+}
+
+#typeOfUser{
+    width: 12.4%;
+    height: 35px;
+}
+
+.age{
+    width: 1%;
+}
+
+p {
+    font-size: 200%;
+    color: #FFC107;
+}
+
+#header{
+    background-color: #3F51B5;
+    font-size: 180%;
+    color: #FFC107;
+    height: 75px;
+    margin-top: 1.5;
+}
+
+.marginButton{
+    margin-top: 0.5%;
+}
+
+input {
+    background-color: white;
+}
+
+select {
+    background-color: white;
+}
+
+h3{
+    color: #303F9F;
+}
+
+.alignButton{
+    margin-left: 8%;
+}

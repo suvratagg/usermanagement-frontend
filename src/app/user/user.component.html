@@ -1,0 +1,375 @@
+<div align="center" class="page-header" id="header">
+  <b>Welcome : {{this.displayName.firstName}} {{this.displayName.lastName}} ({{this.displayName.userType}})</b>
+  <div class="btn-group btn-group-toggle pull-right marginButton" data-toggle="buttons">
+    <button type="button" class="btn btn-outline-warning" (click)="home()">
+      <b>Home</b>
+    </button> &nbsp;
+    <button type="button" class="btn btn-outline-warning" (click)="logout()">
+      <b>Logout</b>
+    </button>
+  </div>
+</div>
+<form [formGroup]="form">
+  <br>
+  <div style="width:90%" align="center" class="styleHeader" *ngIf="showHeader">
+    <input class="inputName" formControlName="fName" placeholder="Enter Username To Search" /> &nbsp;
+    <button type="button" class="btn btn-warning btn-md" (click)="onSearch()">
+      <b>Search</b>
+    </button> &nbsp;
+    <button type="button" class="btn btn-warning btn-md" (click)="searchAll()">
+      <b>Search All Users</b>
+    </button> &nbsp;
+    <button type="button" class="btn btn-warning btn-md" (click)="add()">
+      <b>Add User</b>
+    </button>
+  </div>
+  <br>
+  <table style="width:100%" *ngIf="show">
+    <thead class="tableHeader">
+      <tr>
+        <td>
+          <b>First Name</b>
+        </td>
+        <td>
+          <b>Last Name</b>
+        </td>
+        <td>
+          <b>Username</b>
+        </td>
+        <td>
+          <b>Address</b>
+        </td>
+        <td>
+          <b>Age</b>
+        </td>
+        <td>
+          <b>Employee Code</b>
+        </td>
+        <td>
+          <b>Employee Status</b>
+        </td>
+        <td>
+          <b>Employee Report</b>
+        </td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody class="tableBody" formArrayName="userDetails">
+      <tr *ngFor="let item of form.controls['userDetails'].controls; let i = index;" [formGroupName]="i">
+        <td>
+          <input formControlName="firstName" readonly/>
+        </td>
+        <td>
+          <input formControlName="lastName" readonly/>
+        </td>
+        <td>
+          <input formControlName="username" readonly/>
+        </td>
+        <td>
+          <input formControlName="address" readonly/>
+        </td>
+        <td>
+          <input formControlName="age" readonly/>
+        </td>
+        <td>
+          <input formControlName="employeeCode" readonly/>
+        </td>
+        <td>
+          <input formControlName="employeeStatus" readonly/>
+        </td>
+        <td>
+          <input formControlName="employeeReport" readonly/>
+        </td>
+        <td>
+          <span (click)="openUpdateAdminForm(item)">
+            <i class="fa fa-pencil" data-toggle="popover" title="Edit This User"></i>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="showSingleUser">
+    <table style="width:100%">
+      <thead class="tableHeader">
+        <tr>
+          <td>
+            <b>First Name</b>
+          </td>
+          <td>
+            <b>Last Name</b>
+          </td>
+          <td>
+            <b>Username</b>
+          </td>
+          <td>
+            <b>Address</b>
+          </td>
+          <td class="age">
+            <b>Age</b>
+          </td>
+          <td>
+            <b>Employee Code</b>
+          </td>
+          <td>
+            <b>Employee Status</b>
+          </td>
+          <td>
+            <b>Employee Report Status</b>
+          </td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody class="tableBody" formArrayName="singleUserDetail">
+        <tr *ngFor="let item of form.controls['singleUserDetail'].controls; let i = index;" [formGroupName]="i">
+          <td>
+            <input formControlName="firstName" readonly/>
+          </td>
+          <td>
+            <input formControlName="lastName" readonly/>
+          </td>
+          <td>
+            <input formControlName="username" readonly/>
+          </td>
+          <td>
+            <input formControlName="address" readonly/>
+          </td>
+          <td class="age">
+            <input formControlName="age" readonly/>
+          </td>
+          <td>
+            <input formControlName="employeeCode" readonly/>
+          </td>
+          <td>
+            <input formControlName="employeeStatus" readonly/>
+          </td>
+          <td>
+            <input formControlName="employeeReport" readonly/>
+          </td>
+          <td>
+            <span (click)="openUpdateAdminForm(item)">
+              <i class="fa fa-pencil" data-toggle="popover" title="Edit This User"></i>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+<div class="container">
+  <form [formGroup]="addUserForm" *ngIf="addUser">
+    <div align="left">
+      <h3>
+        <b>
+          <u>
+            Add A New User:-</u>
+        </b>
+      </h3>
+    </div>
+    <br>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>First Name: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="firstName" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Last Name: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="lastName" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Username: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="username" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Address: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="address" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Age: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="age" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Employee Code: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="employeeCode" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Employee Status: - </b>
+      </label> &nbsp;&nbsp;
+      <div class="col-sm-4">
+        <div class="form-group row">
+          <select id="typeOfUser" formControlName="employeeStatus" class="col-sm-6 col-form-label">
+            <option value="" disabled selected="selected">Select your option</option>
+            <option value="Permanant">Permanant</option>
+            <option value="Temporary">Temporary</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Employee Report Status: - </b>
+      </label> &nbsp;&nbsp;
+      <div class="col-sm-4">
+        <div class="form-group row">
+          <select id="typeOfUser" formControlName="employeeReport" class="col-sm-6 col-form-label">
+            <option value="" disabled selected="selected">Select your option</option>
+            <option value="Green">Green</option>
+            <option value="Amber">Amber</option>
+            <option value="Red">Red</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>User Type: - </b>
+      </label> &nbsp;&nbsp;
+      <div class="col-sm-4">
+        <div class="form-group row">
+          <select id="typeOfUser" formControlName="userType" class="col-sm-6 col-form-label">
+            <option value="" disabled selected="selected">Select your option</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div align="left" class="alignButton">
+      <button type="submit" (click)="save()" class="btn btn-warning">
+        <b>Create New User</b>
+      </button>
+    </div>
+  </form>
+</div>
+<div class="container">
+  <form [formGroup]="updateForm" *ngIf="updateUser">
+    <div align="left">
+      <h3>
+        <b>
+          <u>
+            Update User Information:-</u>
+        </b>
+      </h3>
+    </div>
+    <br>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>First Name: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="firstName" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Last Name: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="lastName" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Username: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="username" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Address: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="address" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Age: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="age" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Employee Code: -</b>
+      </label>
+      <div class="col-sm-4">
+        <input formControlName="employeeCode" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Employee Status: - </b>
+      </label> &nbsp;&nbsp;
+      <div class="col-sm-4">
+        <div class="form-group row">
+          <select id="typeOfUser" formControlName="employeeStatus" class="col-sm-6 col-form-label">
+            <option value="" disabled selected="selected">Select your option</option>
+            <option value="Permanant">Permanant</option>
+            <option value="Temporary">Temporary</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Employee Report Status: - </b>
+      </label> &nbsp;&nbsp;
+      <div class="col-sm-4">
+        <div class="form-group row">
+          <select id="typeOfUser" formControlName="employeeReport" class="col-sm-6 col-form-label">
+            <option value="" disabled selected="selected">Select your option</option>
+            <option value="Green">Green</option>
+            <option value="Amber">Amber</option>
+            <option value="Red">Red</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>User Type: - </b>
+      </label> &nbsp;&nbsp;
+      <div class="col-sm-4">
+        <div class="form-group row">
+          <select id="typeOfUser" formControlName="userType" class="col-sm-6 col-form-label">
+            <option value="" disabled selected="selected">Select your option</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div align="left" class="alignButton">
+      <button type="submit" (click)="updateUserInfo()" class="btn btn-warning">
+        <b>Update User</b>
+      </button>
+    </div>
+  </form>
+</div>
