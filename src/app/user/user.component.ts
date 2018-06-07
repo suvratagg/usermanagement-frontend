@@ -20,7 +20,6 @@ export class UserComponent implements OnInit {
   userDetails = [];
   addUser: boolean = false;
   dataSearchAll: any;
-  showSingleUser: boolean = false;
   updateAdminUser: boolean = false;
   updateUser: boolean = false;
   singleUserData: any;
@@ -46,8 +45,7 @@ export class UserComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       fName: new FormControl(),
-      userDetails: new FormArray([]),
-      singleUserDetail: new FormArray([])
+      userDetails: new FormArray([])
     });
 
     this.addUserForm = this.formBuilder.group({
@@ -90,24 +88,8 @@ export class UserComponent implements OnInit {
     })
   }
 
-  getSingleUserDetail(): FormGroup {
-    return this.formBuilder.group({
-      userId: new FormControl(),
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      username: new FormControl(),
-      address: new FormControl(),
-      age: new FormControl(),
-      userType: new FormControl(),
-      employeeCode: new FormControl(),
-      employeeStatus: new FormControl(),
-      employeeReport: new FormControl()
-    })
-  }
-
   home() {
     this.form.reset();
-    this.showSingleUser = false;
     this.addUser = false;
     this.show = false;
     this.updateUser = false;
@@ -124,28 +106,25 @@ export class UserComponent implements OnInit {
       })
       this.form.reset();
       this.show = false;
-      this.showSingleUser = false;
       this.addUser = false;
       this.updateAdminUser = false;
       this.updateUser = false;
     } else {
       this.userService.getUser(req).subscribe(data => {
         if (data[0]) {
-          console.log(data);
           this.singleUserData = data;
           this.form.reset();
-          this.showSingleUser = true;
           this.addUser = false;
-          this.show = false;
+          this.show = true;
           this.updateAdminUser = false;
           this.updateUser = false;
-          const control = <FormArray>this.form.controls['singleUserDetail'];
+          const control = <FormArray>this.form.controls['userDetails'];
           data.forEach(item => {
             if (item.firstName != null) {
               control.push(this.createDetails());
             }
           });
-          this.form.controls['singleUserDetail'].patchValue(data);
+          this.form.controls['userDetails'].patchValue(data);
         }
         else {
           swal({
@@ -154,7 +133,6 @@ export class UserComponent implements OnInit {
           })
           this.form.reset();
           this.show = false;
-          this.showSingleUser = false;
           this.addUser = false;
           this.updateAdminUser = false;
           this.updateUser = false;
@@ -169,7 +147,6 @@ export class UserComponent implements OnInit {
       this.dataSearchAll = data;
       this.show = true;
       this.addUser = false;
-      this.showSingleUser = false;
       const control = <FormArray>this.form.controls['userDetails'];
       data.forEach(item => {
         if (item.firstName != null) {
@@ -185,7 +162,6 @@ export class UserComponent implements OnInit {
   add() {
     this.addUser = true;
     this.show = false;
-    this.showSingleUser = false;
     this.addUserForm.reset();
     this.showHeader = false;
   }
@@ -204,7 +180,6 @@ export class UserComponent implements OnInit {
     } else {
       this.userService.addUser(request).subscribe(data => {
         this.addUser = false;
-        this.showSingleUser = false;
         this.show = false;
         this.showHeader = true;
         swal(
@@ -218,7 +193,6 @@ export class UserComponent implements OnInit {
 
   openUpdateAdminForm(item) {
     this.updateParamUserId = item.value.userId;
-    this.showSingleUser = false;
     this.updateUser = true;
     this.updateAdminUser = false;
     this.showHeader = false;
