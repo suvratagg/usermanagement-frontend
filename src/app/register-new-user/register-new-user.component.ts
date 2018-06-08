@@ -60,6 +60,7 @@ export class RegisterNewUserComponent implements OnInit {
         delete data.employeeCode;
         delete data.employeeReport;
         delete data.employeeStatus;
+        delete data.email;
         this.route.navigate(['/admin', data]);
       } else {
         delete data.userId;
@@ -71,6 +72,7 @@ export class RegisterNewUserComponent implements OnInit {
         delete data.employeeCode;
         delete data.employeeReport;
         delete data.employeeStatus;
+        delete data.email;
         this.route.navigate(['/user', data]);
       }
     })

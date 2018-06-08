@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
       password: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
-      userType: new FormControl()
+      userType: new FormControl(),
+      email: new FormControl()
     });
 
     this.loginForm = this.formBuilder.group({
@@ -124,6 +125,7 @@ export class LoginComponent implements OnInit {
               delete request.firstName;
               delete request.lastName;
               delete request.userType;
+              delete request.email;
               this.router.navigate(['/registernewuser', request]);
           })
         }
