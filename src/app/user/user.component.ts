@@ -188,15 +188,25 @@ export class UserComponent implements OnInit {
         title: 'Please Enter All Details'
       })
     } else {
-      this.userService.addUser(request).subscribe(data => {
-        this.addUser = false;
-        this.show = false;
-        this.showHeader = true;
-        swal(
-          'Success',
-          'User Added Successfully',
-          'success'
-        )
+      const req = request.username;
+      this.userService.getUserName(req).subscribe(data => {
+        if (data) {
+          swal({
+            type: 'error',
+            title: 'Username Already Exists'
+          })
+        } else {
+          this.userService.addUser(request).subscribe(data => {
+            this.addUser = false;
+            this.show = false;
+            this.showHeader = true;
+            swal(
+              'Success',
+              'User Added Successfully',
+              'success'
+            )
+          });
+        }
       });
     }
   }

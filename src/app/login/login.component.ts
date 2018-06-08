@@ -118,12 +118,14 @@ export class LoginComponent implements OnInit {
           })
         } else {
           this.userService.registerUser(request).subscribe(data => {
-            if (request.userType === "Admin") {
-              this.router.navigate(['/admin', request]);
-            } else {
-              this.router.navigate(['/user', request]);
-            }
           });
+          this.userService.addUser(request).subscribe(data=>{
+              delete request.password;
+              delete request.firstName;
+              delete request.lastName;
+              delete request.userType;
+              this.router.navigate(['/registernewuser', request]);
+          })
         }
       });
     }

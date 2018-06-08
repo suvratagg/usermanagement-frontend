@@ -47,6 +47,11 @@ export class UserServiceService {
     return this.http.put(`http://localhost:9000/updateAdmin/${id}`, request);
   }
 
+  // update an registered user
+  public update(id: number, request): Observable<any> {
+    return this.http.put(`http://localhost:9000/update/${id}`, request);
+  }
+
   // register a new user
   public registerUser(request): Observable<any> {
     return this.http.post(environment.registerUser, request);
