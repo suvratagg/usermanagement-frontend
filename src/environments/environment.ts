@@ -4,15 +4,18 @@
 
 export const environment = {
   production: false,
-  findUser : 'http://localhost:9000/find',
-  findAllUsers : 'http://localhost:9000/findAll',
-  addUser : 'http://localhost:9000/save',
-  updateUser:'http://localhost:9000/updateUser',
-  registerUser:'http://localhost:9000/registerUser',
-  getUserName:'http://localhost:9000/findUsername',
+
+  // custom api paths:
+
+  findUser: 'http://localhost:9000/find',
+  findAllUsers: 'http://localhost:9000/findAll',
+  addUser: 'http://localhost:9000/save',
+  updateUser: 'http://localhost:9000/updateUser',
+  registerUser: 'http://localhost:9000/registerUser',
+  getUserName: 'http://localhost:9000/findUsername',
   getPassword: 'http://localhost:9000/checkPassword',
-  updateAdmin:'http://localhost:9000/updateAdmin',
-  logout:'http://localhost:9000/logout'
+  updateAdmin: 'http://localhost:9000/updateAdmin',
+  logout: 'http://localhost:9000/logout'
 };
 
 /*

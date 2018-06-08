@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { Http,HttpModule } from '@angular/http';
 
+// defining custom routes
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UserComponent },

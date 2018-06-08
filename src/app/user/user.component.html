@@ -1,3 +1,4 @@
+<!-- display the user details as header -->
 <div align="center" class="page-header" id="header">
   <b>Welcome : {{this.displayName.firstName}} {{this.displayName.lastName}} ({{this.displayName.userType}})</b>
   <div class="btn-group btn-group-toggle pull-right marginButton" data-toggle="buttons">
@@ -9,6 +10,7 @@
     </button>
   </div>
 </div>
+<!-- opertaion performing block -->
 <form [formGroup]="form">
   <br>
   <div style="width:90%" align="center" class="styleHeader" *ngIf="showHeader">
@@ -24,6 +26,7 @@
     </button>
   </div>
   <br>
+  <!-- table to display the search results -->
   <table style="width:100%" *ngIf="show">
     <thead class="tableHeader">
       <tr>
@@ -89,6 +92,7 @@
     </tbody>
   </table>
 </form>
+<!-- add a new user form -->
 <div class="container">
   <form [formGroup]="addUserForm" *ngIf="addUser">
     <div align="left">
@@ -137,7 +141,7 @@
         <b>Age: -</b>
       </label>
       <div class="col-sm-4">
-        <input formControlName="age" type="number"/>
+        <input formControlName="age" type="number" />
       </div>
     </div>
     <div class="form-group row">
@@ -198,6 +202,7 @@
     </div>
   </form>
 </div>
+<!-- update an existing user form -->
 <div class="container">
   <form [formGroup]="updateForm" *ngIf="updateUser">
     <div align="left">
@@ -246,7 +251,7 @@
         <b>Age: -</b>
       </label>
       <div class="col-sm-4">
-        <input formControlName="age" type="number"/>
+        <input formControlName="age" type="number" />
       </div>
     </div>
     <div class="form-group row">

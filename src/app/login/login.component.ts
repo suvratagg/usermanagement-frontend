@@ -1,8 +1,10 @@
+// imports from angular
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
+// import the service
 import { UserServiceService } from '../user-service.service'
 
 @Component({
@@ -12,11 +14,14 @@ import { UserServiceService } from '../user-service.service'
 })
 export class LoginComponent implements OnInit {
 
+  // global variables required in the file
   showLogin: boolean = false;
   showRegister: boolean = false;
   registerForm: FormGroup;
   loginForm: FormGroup;
+  adminData: any;
 
+  //constructor declaring our service, forbuilder and router
   constructor(private userService: UserServiceService, private formBuilder: FormBuilder,
     private router: Router) { }
 
@@ -40,7 +45,8 @@ export class LoginComponent implements OnInit {
 
     this.showLogin = true;
   }
-  adminData: any;
+
+  // login button 
   login() {
     const request = this.loginForm.get('username').value;
     if ((request === null) || (request === '')) {
@@ -86,11 +92,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // open register new user form
   createUser() {
     this.showLogin = false;
     this.showRegister = true;
   }
 
+  // save new user account details
   saveUser() {
     const request = this.registerForm.getRawValue();
     if ((request.firstName === null) || (request.firstName === '') || (request.lastName === null) ||
@@ -121,7 +129,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  backToLogin(){
+  // browse back to login form
+  backToLogin() {
     this.showRegister = false;
     this.showLogin = true;
   }
