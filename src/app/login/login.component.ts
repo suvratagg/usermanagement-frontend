@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
                 delete data.firstName;
                 delete data.lastName;
                 delete data.userType;
+                delete data.email;
                 this.router.navigate(['/admin', data]);
                 localStorage.setItem('logIn', data.username);
               } else {
@@ -73,6 +74,7 @@ export class LoginComponent implements OnInit {
                 delete data.firstName;
                 delete data.lastName;
                 delete data.userType;
+                delete data.email;
                 this.router.navigate(['/user', data]);
                 localStorage.setItem('logIn', data.username);
               }

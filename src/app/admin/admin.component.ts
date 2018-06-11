@@ -31,6 +31,7 @@ export class AdminComponent implements OnInit {
   showHeader: boolean = true;
   displayName: any;
   updateParamUserId: number;
+  viewCarousel: boolean = true;
 
   //constructor declaring our service, forbuilder and router
   constructor(private userService: UserServiceService, private formBuilder: FormBuilder,
@@ -100,6 +101,7 @@ export class AdminComponent implements OnInit {
     this.updateUser = false;
     this.updateAdminUser = false;
     this.showHeader = true;
+    this.viewCarousel = true;
   }
 
   //search result method
@@ -116,6 +118,7 @@ export class AdminComponent implements OnInit {
       this.addUser = false;
       this.updateAdminUser = false;
       this.updateUser = false;
+      this.viewCarousel = true;
     } else {
       this.userService.getUser(req).subscribe(data => {
         if (data[0]) {
@@ -125,6 +128,7 @@ export class AdminComponent implements OnInit {
           this.show = true;
           this.updateAdminUser = false;
           this.updateUser = false;
+          this.viewCarousel = false;
           const control = <FormArray>this.form.controls['userDetails'];
           data.forEach(item => {
             if (item.firstName != null) {
@@ -143,6 +147,7 @@ export class AdminComponent implements OnInit {
           this.addUser = false;
           this.updateAdminUser = false;
           this.updateUser = false;
+          this.viewCarousel = true;
         }
       });
     }
@@ -155,6 +160,7 @@ export class AdminComponent implements OnInit {
       this.dataSearchAll = data;
       this.show = true;
       this.addUser = false;
+      this.viewCarousel = false;
       const control = <FormArray>this.form.controls['userDetails'];
       data.forEach(item => {
         if (item.firstName != null) {
@@ -173,6 +179,7 @@ export class AdminComponent implements OnInit {
     this.show = false;
     this.addUserForm.reset();
     this.showHeader = false;
+    this.viewCarousel = false;
   }
 
   // saving a new added user
@@ -200,6 +207,7 @@ export class AdminComponent implements OnInit {
             this.addUser = false;
             this.show = false;
             this.showHeader = true;
+            this.viewCarousel = true;
             swal(
               'Success',
               'User Added Successfully',
@@ -219,6 +227,7 @@ export class AdminComponent implements OnInit {
     this.show = false;
     this.updateUserForm.patchValue(item.value);
     this.showHeader = false;
+    this.viewCarousel = false;
   }
 
   // saving the updated details of the user
@@ -228,6 +237,7 @@ export class AdminComponent implements OnInit {
     this.userService.updateAdmin(id, request).subscribe(data => {
       this.updateAdminUser = false;
       this.showHeader = true;
+      this.viewCarousel = true;
       swal(
         'Success',
         'User Updated Successfully',
@@ -264,11 +274,13 @@ export class AdminComponent implements OnInit {
           this.addUser = false;
           this.show = false;
           this.showHeader = true;
+          this.viewCarousel = true;
         });
         this.userService.deleteUser(uname).subscribe(data => {
           this.addUser = false;
           this.show = false;
           this.showHeader = true;
+          this.viewCarousel = true;
         });
         swal(
           item.value.firstName + ' ' + item.value.lastName + ' has been deleted!',

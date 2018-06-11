@@ -2,26 +2,61 @@
 <div align="center" class="page-header" id="header">
   <b>Welcome : {{this.displayName.firstName}} {{this.displayName.lastName}} ({{this.displayName.userType}})</b>
   <div class="btn-group btn-group-toggle pull-right marginButton" data-toggle="buttons">
-    <button type="button" class="btn btn-outline-warning" (click)="home()">
+    <button type="button" class="btn btn-outline-light" (click)="home()">
       <b>Home</b>
     </button> &nbsp;
-    <button type="button" class="btn btn-outline-warning" (click)="logout()">
+    <button type="button" class="btn btn-outline-light" (click)="logout()">
       <b>Logout</b>
     </button>
   </div>
 </div>
 <!-- opertaion performing block -->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" *ngIf="viewCarousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="../../assets/image/img4.jpg" height="500" alt="First slide">
+      <article class="carousel-caption d-none d-md-block">
+        <h2>
+          <b>Login As An Administrator</b>
+        </h2>
+        <p>
+          <b>Manage All Your User From A Single Page</b>
+        </p>
+      </article>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="../../assets/image/img3.png" height="500" alt="Second slide">
+      <article class="carousel-caption d-none d-md-block">
+        <h2>
+          <b>Login As An User</b>
+        </h2>
+        <p>
+          <b>Edit Your Information And Track Your Peers</b>
+        </p>
+      </article>
+    </div>
+    <br>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 <form [formGroup]="form">
   <br>
   <div style="width:90%" align="center" class="styleHeader" *ngIf="showHeader">
     <input class="inputName" formControlName="fName" placeholder="Enter Username To Search" /> &nbsp;
-    <button type="button" class="btn btn-warning btn-md" (click)="onSearch()">
+    <button type="button" class="btn btn-dark btn-md" (click)="onSearch()">
       <b>Search</b>
     </button> &nbsp;
-    <button type="button" class="btn btn-warning btn-md" (click)="searchAll()">
+    <button type="button" class="btn btn-dark btn-md" (click)="searchAll()">
       <b>Search All Users</b>
     </button> &nbsp;
-    <button type="button" class="btn btn-warning btn-md" (click)="add()">
+    <button type="button" class="btn btn-dark btn-md" (click)="add()">
       <b>Add User</b>
     </button>
   </div>
@@ -196,7 +231,7 @@
       </div>
     </div>
     <div align="left" class="alignButton">
-      <button type="submit" (click)="save()" class="btn btn-warning">
+      <button type="submit" (click)="save()" class="btn btn-dark">
         <b>Create New User</b>
       </button>
     </div>
@@ -306,7 +341,7 @@
       </div>
     </div>
     <div align="left" class="alignButton">
-      <button type="submit" (click)="updateUserInfo()" class="btn btn-warning">
+      <button type="submit" (click)="updateUserInfo()" class="btn btn-dark">
         <b>Update User</b>
       </button>
     </div>
